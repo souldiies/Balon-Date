@@ -32,5 +32,11 @@ async def yardım(ctx):
         "`!ping` → Botun çalışıp çalışmadığını gösterir.\n"
         "`!merhaba` → Sana selam verir.\n"
         "`!yardım` → Komutları gösterir."
+    )
 
-)bot.run(os.getenv("DISCORD_TOKEN"))
+token = os.getenv("DISCORD_TOKEN")
+
+if not token:
+    raise ValueError("DISCORD_TOKEN bulunamadı!")
+
+bot.run(token)
