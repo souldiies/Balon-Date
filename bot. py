@@ -1,1 +1,36 @@
+import discord
+from discord.ext import commands
 
+intents = discord.Intents.default()
+intents.message_content = True
+intents.members = True
+
+bot = commands.Bot(
+    command_prefix="!",
+    intents=intents,
+    help_command=None
+)
+
+@bot.event
+async def on_ready():
+    print(f"{bot.user} aktif!")
+    print(f"{len(bot.guilds)} sunucuda çalışıyor.")
+
+@bot.command()
+async def ping(ctx):
+    await ctx.send("🏓 Pong! 💗")
+
+@bot.command()
+async def merhaba(ctx):
+    await ctx.send(f"Merhaba {ctx.author.mention}! 💗")
+
+@bot.command()
+async def yardım(ctx):
+    await ctx.send(
+        "💗 **Balon-Date Bot Komutları**\n\n"
+        "`!ping` → Botun çalışıp çalışmadığını gösterir.\n"
+        "`!merhaba` → Sana selam verir.\n"
+        "`!yardım` → Komutları gösterir."
+    )
+
+bot.run("BURAYA_BOT_TOKENINI_YAZ")
